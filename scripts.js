@@ -2,6 +2,9 @@
 var tempType = 'imperial';
 
 const card = document.querySelector('.card');
+const sun = document.querySelector('.sun');
+const rain = document.querySelector('.rain');
+const haze = document.querySelector('.haze');
 
 const cityInfo = document.querySelector('#cityInfo');
 // Weather
@@ -60,7 +63,25 @@ function getWeather(zipCode, checkForNum) {
                     var weatherType = weather.weather[0].main;
                     weatherText.textContent = weatherType;
                     weatherImg.src = 'icons/' + weatherType.toLowerCase() + '.svg';
-                    console.log(weather);
+                    // console.log(weatherType.toLowerCase());
+                    if (weatherType.toLowerCase() === 'clear') {
+                        sun.style.opacity = '1';
+                    } else {
+                        sun.style.opacity = '0';
+                    }
+                    if (weatherType.toLowerCase() === 'rain' || weatherType.toLowerCase() === 'showers' || weatherType.toLowerCase() === 'drizzle') {
+                        rain.style.opacity = '0.75';
+                    } else if (weatherType.toLowerCase() === 'mist') {
+                        rain.style.opacity = '0.25';
+                    } else {
+                        rain.style.opacity = '0';
+                    }
+                    if(weatherType.toLowerCase() === 'haze') {
+                        haze.style.opacity = '1';
+                    } else {
+                        haze.style.opacity = '0';
+                    }
+                    
                     
                     // Display Temps
                     var currentTemp = Math.round(weather.main.temp);

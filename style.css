@@ -19,6 +19,7 @@ body {
   padding: 10px;
   background: aliceblue;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+  position: relative;
   overflow: hidden;
 }
 
@@ -39,6 +40,7 @@ body {
   border: none;
   border-bottom: 1px solid #e7e7e7;
   outline:  none;
+  z-index: 1;
 }
 
 .search-zip {
@@ -81,7 +83,7 @@ body {
 }
 
 .weather-type {
-  font-size: 2em;
+  font-size: 3.5em;
 }
 
 .weather-img img {
@@ -90,7 +92,10 @@ body {
 
 .weather-img {
   width: 75%;
-  margin-top: -10%;
+  position: absolute;
+  top: 0;
+  bottom: 5%;
+  display: flex 
 }
 
 .temps {
@@ -98,6 +103,10 @@ body {
   flex-direction:  column;
   justify-content:  center;
   align-items:  center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5%;
 }
 
 .highs-lows {
@@ -124,4 +133,39 @@ body {
 .temp-markers div {
   margin: 0px 10px;
   font-size: 0.65em;
+}
+
+.sun {
+  position:  absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 1000ms;
+}
+
+.sun img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(140deg);
+  opacity: 0.5;
+}
+
+.rain {
+  position:  absolute;
+  top: -0;
+  opacity: 0;
+  transition: 1000ms;
+}
+
+.haze {
+  background: linear-gradient(rgba(0,0,0,0.01), rgba(0,0,0,0.2), rgba(0,0,0,0.05));
+  position:  absolute;
+  top: 0;
+  bottom:  0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: 1000ms;
 }
