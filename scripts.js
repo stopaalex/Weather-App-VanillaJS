@@ -5,17 +5,21 @@ const cityInfo = document.querySelector('#cityInfo');
 const weatherText = document.querySelector('#weatherText .weather-type');
 const weatherImg = document.querySelector('#weatherImg img');
 const zipBtn = document.querySelector('#searchZip');
-var zip = document.querySelector('#zipCodeSearch').value;
+var zip;
 
 
-function getZipData() {
-    var url2 = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + zip + '&key=AIzaSyDalUj2S8wriBt-HGwa-si6xUYKoCxR11s';
+
+function getZipData(zipCode) {
+    if (!zipCode) {
+        var url2 = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + '22201' + '&key=AIzaSyDalUj2S8wriBt-HGwa-si6xUYKoCxR11s';
+    } else {
+        var url2 = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + zipCode + '&key=AIzaSyDalUj2S8wriBt-HGwa-si6xUYKoCxR11s';
+    }
     fetch(url2)
     .then(function(blob) {
         return blob.json()
         .then(function(data) {
             var location = data.results[0];
-            console.log(location);
             
             var city = location.address_components[1].short_name;
             var state = location.address_components[3].short_name;
@@ -43,15 +47,24 @@ function getWeather(zipCode) {
 
 function getWeatherFromZip() {
     var zip = document.querySelector('#zipCodeSearch').value;
-    console.log(zip);
+    getZipData(zip);
+}
+
+function isEnterPressed(e) {
+    var inputFocused = (document.activeElement === (document.querySelector('#zipCodeSearch')));
+    if (e.key === 'Enter' && inputFocused) {
+        getWeatherFromZip();
+    } else {
+        return
+    }
+    
 }
 
 function initialize() {
-    if (!zip) {
-        zip = '22201';
-    }
     zipBtn.addEventListener('click', getWeatherFromZip);
     getZipData();
+
+    window.addEventListener('keypress', isEnterPressed);
 }
 
 initialize();
