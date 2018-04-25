@@ -19,6 +19,7 @@ body {
   padding: 10px;
   background: aliceblue;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+  overflow: hidden;
 }
 
 .card .header {
@@ -90,4 +91,37 @@ body {
 .weather-img {
   width: 75%;
   margin-top: -10%;
+}
+
+.temps {
+  display:  flex;
+  flex-direction:  column;
+  justify-content:  center;
+  align-items:  center;
+}
+
+.highs-lows {
+  display:  flex;
+}
+
+.current-temp {
+  font-size: 3em;
+}
+
+.highs-lows div {
+  padding: 0 10px;
+  /* border-right: 1px solid black; */
+}
+
+.highs-lows div:nth-of-type(1) {
+  border-right: 1px solid #000000;
+}
+
+.temp-markers {
+  display:  flex;
+}
+
+.temp-markers div {
+  margin: 0px 10px;
+  font-size: 0.65em;
 }
