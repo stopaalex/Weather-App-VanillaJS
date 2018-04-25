@@ -50,9 +50,9 @@ function getZipData(zipCode) {
 
 function getWeather(zipCode, checkForNum) {
     if (!checkForNum) {
-        var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + zipCode + ',us&units=' + tempType + '&appid=d47f5e0ca7fe361331cb5e11a3c95a30';
+        var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + zipCode + ',us&units=' + tempType + '&appid=d47f5e0ca7fe361331cb5e11a3c95a30';
     } else {
-        var url = 'http://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + ',us&units=' + tempType + '&appid=d47f5e0ca7fe361331cb5e11a3c95a30';
+        var url = 'https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + ',us&units=' + tempType + '&appid=d47f5e0ca7fe361331cb5e11a3c95a30';
     }
     fetch(url)
         .then(function (blob) {
